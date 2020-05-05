@@ -95,6 +95,17 @@ internal class ListArticleViewModelTest {
         assertEquals(actual.getContentIfNotHandled(), "Generic error")
     }
 
+    @Test
+    fun fetchArticleList_checkLoadingSpinnerLiveDataValue() {
+        `when`(articleProvider.fetchListArticle()).thenReturn(Single.error(Exception()))
+
+        subject.fetchArticleList()
+
+        val actual = subject.loadingSpinnerLiveData.getOrAwaitValue()
+
+        assertEquals(actual.getContentIfNotHandled(), false)
+    }
+
     private fun createListArticle() = listOf(
         Article(1, "title1", 1586404611, "short_desc1", "avatar_url1"),
         Article(2, "title2", 1586404611, "short_desc2", "avatar_url2")
