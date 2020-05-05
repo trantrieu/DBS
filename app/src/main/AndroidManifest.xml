@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.dbs">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".list.DBSApp"
@@ -26,6 +26,13 @@
         <activity
             android:name=".detail.DetailActivity"
             android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".edit.EditActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
 
         </activity>
 

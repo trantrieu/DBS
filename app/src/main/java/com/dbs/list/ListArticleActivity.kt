@@ -33,11 +33,12 @@ class ListArticleActivity : BaseActivity() {
             this,
             listArticleViewModelFactory
         ).get(ListArticleViewModel::class.java)
-        val adapter = ArticlesAdapter(onItemClickListener = object: ArticlesAdapter.OnItemClickListener {
-            override fun onItemClickListener(id: Int) {
-                viewModel.fetchDetail(id)
-            }
-        })
+        val adapter =
+            ArticlesAdapter(onItemClickListener = object : ArticlesAdapter.OnItemClickListener {
+                override fun onItemClickListener(id: Int) {
+                    viewModel.fetchDetail(id)
+                }
+            })
         val layoutManager = LinearLayoutManager(this)
         viewBinding.recyclerViewItems.layoutManager = layoutManager
         viewBinding.recyclerViewItems.adapter = adapter
@@ -66,10 +67,8 @@ class ListArticleActivity : BaseActivity() {
         })
         viewModel.navigateDetailLiveData.observe(this, Observer { it ->
             if (!it.hasBeenHandled) {
-                it.getContentIfNotHandled()?.let {detail ->
-                    val intent = Intent(this, DetailActivity::class.java)
-                    intent.putExtra(DetailActivity.DETAIL_EXTRA, detail)
-                    startActivity(intent)
+                it.getContentIfNotHandled()?.let { detail ->
+                    DetailActivity.startActivity(this, detail)
                 }
             }
         })

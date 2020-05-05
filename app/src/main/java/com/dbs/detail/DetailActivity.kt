@@ -1,5 +1,7 @@
 package com.dbs.detail
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.Menu
@@ -12,18 +14,37 @@ import com.dbs.databinding.ActivityDetailBinding
 import com.dbs.list.DBSApp
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
+import com.dbs.base.R
+import com.dbs.edit.EditActivity
 
 class DetailActivity : BaseActivity() {
 
     companion object {
-        const val DETAIL_EXTRA = "DETAIL_EXTRA"
+        internal const val DETAIL_EXTRA = "DETAIL_EXTRA"
+        internal const val REQUEST_EDIT_CODE = 1000
+
+        fun startActivity(activity: Activity, detail: Detail) {
+            val intent = Intent(activity, DetailActivity::class.java)
+            intent.putExtra(DETAIL_EXTRA, detail)
+            activity.startActivity(intent)
+        }
     }
 
     @Inject
     internal lateinit var detailViewModelFactory: DetailViewModelFactory
 
+    private lateinit var viewModel: DetailViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val detail = intent?.run {
+            getParcelableExtra<Detail>(DETAIL_EXTRA)
+        }
+        if (detail == null) {
+            finish()
+            return
+        }
 
         DaggerDetailComponent.builder()
             .dBSAppComponent(DBSApp.getApp(this))
@@ -36,15 +57,7 @@ class DetailActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.articleLongText.movementMethod = ScrollingMovementMethod()
 
-        val detail = intent?.run {
-            getParcelableExtra<Detail>(DETAIL_EXTRA)
-        }
-        if (detail == null) {
-            finish()
-            return
-        }
-
-        val viewModel = ViewModelProvider(
+        viewModel = ViewModelProvider(
             this,
             detailViewModelFactory
         ).get(DetailViewModel::class.java)
@@ -62,15 +75,29 @@ class DetailActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == android.R.id.home) {
-            finish()
-            return true
+        when (item?.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+            R.id.action_edit -> {
+                EditActivity.startActivity(this, viewModel.getDetail(), REQUEST_EDIT_CODE)
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(com.dbs.base.R.menu.menu, menu)
+        menuInflater.inflate(R.menu.main_menu, menu)
         return true
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_EDIT_CODE && resultCode == Activity.RESULT_OK && data != null) {
+            val detail = data.getParcelableExtra<Detail>(DETAIL_EXTRA)
+            viewModel.setDetail(detail)
+        }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }
