@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/card_item_margin"
+    app:cardCornerRadius="@dimen/card_corner_radius">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/item_padding">
+
+        <TextView
+            android:id="@+id/article_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/item_padding"
+            android:gravity="start"
+            android:textSize="@dimen/big_text"
+            app:layout_constraintBottom_toTopOf="@+id/article_last_update"
+            app:layout_constraintEnd_toStartOf="@id/article_avatar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="This is title, this is titleThis is title, this is titleThis is title, this is titleThis is title, this is titleThis is title, this is titleThis is title, this is titleThis is title, this is titleThis is title, this is titleThis is title, this is titleThis is title, this is titleThis is title, this is titleThis is title, this is titleThis is title, this is title" />
+
+        <ImageView
+            android:id="@+id/article_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/article_last_update"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/article_title"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_background"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/article_last_update"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_padding"
+            android:layout_marginEnd="@dimen/item_padding"
+            android:gravity="start"
+            android:textSize="@dimen/small_text"
+            app:layout_constraintEnd_toStartOf="@id/article_avatar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/article_title"
+            tools:text="2020-01-01" />
+
+        <TextView
+            android:id="@+id/article_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_padding"
+            android:textSize="@dimen/big_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/article_last_update"
+            tools:text="This is short description, This is short description, This is short description, This is short description, This is short description, This is short description, This is short description, This is short description, This is short description, This is short description, " />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

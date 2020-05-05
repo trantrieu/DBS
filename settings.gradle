@@ -1,0 +1,10 @@
+rootProject.name='DBS'
+include ':app',
+        ':base',
+        ':data',
+        ':network',
+        ':service',
+        ':util',
+        ':article'
+include ':config'
+include ':testsupport'

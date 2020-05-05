@@ -1,0 +1,26 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion buildVersions.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion buildVersions.minSdkVersion
+        targetSdkVersion buildVersions.targetSdkVersion
+        versionCode appVersions.versionCode
+        versionName appVersions.versionName
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    variantFilter { variant ->
+
+        if (variant.buildType.name == "release") {
+            setIgnore(true)
+        }
+    }
+}

@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion buildVersions.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion buildVersions.minSdkVersion
+        targetSdkVersion buildVersions.targetSdkVersion
+        versionCode appVersions.versionCode
+        versionName appVersions.versionName
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    variantFilter { variant ->
+
+        if (variant.buildType.name == "release") {
+            setIgnore(true)
+        }
+    }
+}
+
+dependencies {
+    implementation libs.kotlinLib
+    implementation libs.dagger2
+    implementation libs.retrofit2
+    implementation libs.retrofit2Converter
+    implementation libs.rxJava2
+    kapt libsAnnotationProcessor.dagger2
+
+    implementation project(':network')
+    implementation project(':data')
+
+    testImplementation libs.junit
+    testImplementation libs.mockito
+}

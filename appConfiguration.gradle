@@ -1,0 +1,14 @@
+ext.buildVersions = [
+        compileSdkVersion : 28,
+        minSdkVersion : 21,
+        targetSdkVersion : 28
+]
+
+ext.urlConfiguration = [
+        host : "https://task.free.beeceptor.com/"
+]
+
+ext.appVersions = [
+        versionCode : 1,
+        versionName : "1.0"
+]

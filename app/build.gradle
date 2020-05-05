@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion buildVersions.compileSdkVersion
+    defaultConfig {
+        applicationId "com.dbs"
+        minSdkVersion buildVersions.minSdkVersion
+        targetSdkVersion buildVersions.targetSdkVersion
+        versionCode appVersions.versionCode
+        versionName appVersions.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    variantFilter { variant ->
+
+        if (variant.buildType.name == "release") {
+            setIgnore(true)
+        }
+    }
+    viewBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+
+    implementation libs.appcompat
+    implementation libs.recyclerView
+    implementation libs.cardView
+    implementation libs.dagger2
+    implementation libs.constraintLayout
+    implementation libs.retrofit2
+    implementation libs.picasso
+    implementation libs.rxJava2
+    implementation libs.viewModel
+    implementation libs.liveData
+
+    implementation project(':base')
+    implementation project(':data')
+    implementation project(':util')
+    implementation project(':article')
+    implementation project(':network')
+    implementation project(':service')
+    implementation project(':config')
+
+    kapt libsAnnotationProcessor.dagger2
+
+    testImplementation libs.junit
+    testImplementation libs.mockito
+    testImplementation libs.archTest
+    testImplementation project(':testsupport')
+}

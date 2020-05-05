@@ -1,0 +1,47 @@
+ext.libsVersions = [
+        toolsGradle: '3.6.3',
+        kotlin     : '1.3.41',
+        appcompat  : '1.1.0',
+        cardview   : '1.0.0',
+        dagger2    : '2.26',
+        retrofit2  : '2.7.2',
+        rxJava2           : '2.2.18',
+        rxAndroid         : '2.1.1',
+        okHttpLog         : '4.4.0',
+        constraintLayout  : '1.1.3',
+        picasso    : '2.71828',
+        lifecycle  : '2.2.0',
+        junit      : '4.12',
+        mockito    : '1.10.19',
+        archTesting: '2.1.0'
+]
+
+ext.buildLibs = [
+        toolsGradle : "com.android.tools.build:gradle:$libsVersions.toolsGradle",
+        kotlinGradlePlugin : "org.jetbrains.kotlin:kotlin-gradle-plugin:$libsVersions.kotlin"
+]
+
+ext.libs = [
+        kotlinLib : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$libsVersions.kotlin",
+        appcompat : "androidx.appcompat:appcompat:$libsVersions.appcompat",
+        dagger2 : "com.google.dagger:dagger:$libsVersions.dagger2",
+        retrofit2 : "com.squareup.retrofit2:retrofit:$libsVersions.retrofit2",
+        rxJava2 : "io.reactivex.rxjava2:rxjava:$libsVersions.rxJava2",
+        retrofit2Adapter : "com.squareup.retrofit2:adapter-rxjava2:$libsVersions.retrofit2",
+        retrofit2Converter : "com.squareup.retrofit2:converter-gson:$libsVersions.retrofit2",
+        recyclerView : "androidx.recyclerview:recyclerview:$libsVersions.appcompat",
+        rxAndroid : "io.reactivex.rxjava2:rxandroid:$libsVersions.rxAndroid",
+        cardView : "androidx.cardview:cardview:$libsVersions.cardview",
+        okHttpLog : "com.squareup.okhttp3:logging-interceptor:$libsVersions.okHttpLog",
+        constraintLayout : "androidx.constraintlayout:constraintlayout:$libsVersions.constraintLayout",
+        picasso : "com.squareup.picasso:picasso:$libsVersions.picasso",
+        viewModel: "androidx.lifecycle:lifecycle-viewmodel:$libsVersions.lifecycle",
+        liveData: "androidx.lifecycle:lifecycle-livedata:$libsVersions.lifecycle",
+        junit: "junit:junit:$libsVersions.junit",
+        mockito: "org.mockito:mockito-core:$libsVersions.mockito",
+        archTest: "android.arch.core:core-testing:$libsVersions.archTesting"
+]
+
+ext.libsAnnotationProcessor = [
+        dagger2 : "com.google.dagger:dagger-compiler:$libsVersions.dagger2"
+]
