@@ -7,7 +7,9 @@
 1. Dagger2
 2. RxJava2
 3. Retrofit2
-4. AndroidX
+4. AndroidX (ViewModel, LiveData)
+5. JUnit
+6. Mockito
 
 ## Modules:
 1. app: contains Application class, article, detail and edit feature
@@ -36,6 +38,9 @@ So just update the host for connecting to your server.
 3. Edit detail
 4. Edit detail and save, native to detail screen and show the editted text
 5. Sorted articles list base on last update
+
+## Test:
+Unit test with JUnit and Mockito
 
 ## Note:
 The api that you provide is limited by number of request per days, that why i change to other api, please update it.
