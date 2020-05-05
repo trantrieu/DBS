@@ -14,7 +14,10 @@ internal class ArticleProviderImpl @Inject constructor(
 
     override fun fetchListArticle(): Single<ArticleListResult> {
         return serviceProvider.getArticles().map {
-            ArticleListResult.Success(it) as ArticleListResult
+            val sortList = it.sortedBy { article ->
+                article.lastUpdate
+            }
+            ArticleListResult.Success(sortList) as ArticleListResult
         }.onErrorReturn {
             val msg = it.message ?: "Generic failure"
             ArticleListResult.Failure(msg) as ArticleListResult

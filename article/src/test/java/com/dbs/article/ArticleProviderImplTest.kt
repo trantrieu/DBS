@@ -34,7 +34,7 @@ internal class ArticleProviderImplTest {
     }
 
     @Test
-    fun fetchListArticle_givenErrorWithService_returnsSuccessfulFailure() {
+    fun fetchListArticle_givenErrorWithService_returnsFailureResult() {
         `when`(serviceProvider.getArticles()).thenReturn(Single.error(Exception("Exception")))
 
         val actual = subject.fetchListArticle().test()
@@ -44,5 +44,27 @@ internal class ArticleProviderImplTest {
         }
     }
 
+    @Test
+    fun fetchListArticle_givenInOrderList_returnsSortedListSuccessful() {
+        val list = listOf(
+            createArticle(3, 3),
+            createArticle(2, 2),
+            createArticle(4, 4),
+            createArticle(1, 1)
+        )
+        `when`(serviceProvider.getArticles()).thenReturn(Single.just(list))
+
+        val actual = subject.fetchListArticle().test()
+
+        actual.assertValue {
+            it is ArticleListResult.Success &&
+                    it.articleList[0].id == 1 &&
+                    it.articleList[1].id == 2 &&
+                    it.articleList[2].id == 3 &&
+                    it.articleList[3].id == 4
+        }
+    }
+
     private fun createArticle() = Article(1, "title", 1L, "description1", "avatar1")
+    private fun createArticle(id: Int, lastUpdate: Long) = Article(id, "title", lastUpdate, "description1", "avatar1")
 }
