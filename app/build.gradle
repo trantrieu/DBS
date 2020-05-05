@@ -47,6 +47,7 @@ dependencies {
     implementation project(':data')
     implementation project(':util')
     implementation project(':article')
+    implementation project(':detail')
     implementation project(':network')
     implementation project(':service')
     implementation project(':config')

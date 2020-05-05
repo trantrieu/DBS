@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion buildVersions.compileSdkVersion
@@ -26,10 +27,12 @@ android {
 }
 
 dependencies {
-
+    implementation project(':service')
+    implementation project(':data')
     implementation libs.rxJava2
     implementation libs.rxAndroid
-    implementation libs.picasso
+    implementation libs.dagger2
+    kapt libsAnnotationProcessor.dagger2
 
     testImplementation libs.junit
     testImplementation libs.mockito

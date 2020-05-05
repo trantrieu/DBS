@@ -4,5 +4,6 @@
     <string name="popup_title">Title</string>
     <string name="loading">Loading</string>
     <string name="ok">Ok</string>
+    <string name="edit">Edit</string>
 
 </resources>

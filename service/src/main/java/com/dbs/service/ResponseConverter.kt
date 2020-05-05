@@ -1,6 +1,8 @@
 package com.dbs.service
 
+import com.dbs.data.article.detail.Detail
 import com.dbs.data.article.list.Article
+import com.dbs.service.detail.DetailResponse
 import com.dbs.service.titles.ArticleResponse
 
 internal object ResponseConverter {
@@ -10,6 +12,12 @@ internal object ResponseConverter {
             with(it) {
                 Article(id, title, lastUpdate, shortDescription, avatar)
             }
+        }
+    }
+
+    fun convertDetail(detail: DetailResponse): Detail {
+        return with(detail) {
+            Detail(id, text)
         }
     }
 

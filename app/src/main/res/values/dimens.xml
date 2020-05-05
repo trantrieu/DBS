@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="item_padding">8dp</dimen>
+    <dimen name="item_padding">14dp</dimen>
     <dimen name="card_item_margin">8dp</dimen>
     <dimen name="card_corner_radius">4dp</dimen>
+    <dimen name="avatar_size">60dp</dimen>
 
     <dimen name="big_text">16sp</dimen>
     <dimen name="small_text">12sp</dimen>

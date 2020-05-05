@@ -4,7 +4,10 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.dbs.article.ArticleListResult
 import com.dbs.article.ArticleProvider
 import com.dbs.config.SchedulerConfig
+import com.dbs.data.article.detail.Detail
 import com.dbs.data.article.list.Article
+import com.dbs.detail.DetailProvider
+import com.dbs.detail.DetailResult
 import com.dbs.testsupport.getOrAwaitValue
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
@@ -30,6 +33,8 @@ internal class ListArticleViewModelTest {
     @Mock
     private lateinit var articleProvider: ArticleProvider
     @Mock
+    private lateinit var detailProvider: DetailProvider
+    @Mock
     private lateinit var schedulerConfig: SchedulerConfig
 
     private lateinit var subject: ListArticleViewModel
@@ -37,7 +42,7 @@ internal class ListArticleViewModelTest {
     @Before
     fun setup() {
         `when`(schedulerConfig.getMainScheduler()).thenReturn(Schedulers.trampoline())
-        subject = ListArticleViewModel(articleProvider, schedulerConfig, CompositeDisposable())
+        subject = ListArticleViewModel(articleProvider, detailProvider, schedulerConfig, CompositeDisposable())
     }
 
     @Test
@@ -106,8 +111,76 @@ internal class ListArticleViewModelTest {
         assertEquals(actual.getContentIfNotHandled(), false)
     }
 
+    @Test
+    fun fetchDetail_givenDetailSuccess_checkNavigateDetailMutableLiveData() {
+        val detail = createDetail(Article(1, "title1", 1586404611, "short_desc1", "avatar_url1"))
+        `when`(articleProvider.fetchListArticle()).thenReturn(Single.just(ArticleListResult.Success(createListArticle())))
+        subject.fetchArticleList()
+
+        `when`(detailProvider.fetchDetailWithArticle(1, createListArticle())).thenReturn(Single.just(DetailResult.Success(detail)))
+        subject.fetchDetail(1)
+
+        val actual = subject.navigateDetailLiveData.getOrAwaitValue()
+
+        assertEquals(actual.getContentIfNotHandled(), detail)
+    }
+
+    @Test
+    fun fetchDetail_givenDetailFailure_checkErrorMutableLiveData() {
+        `when`(articleProvider.fetchListArticle()).thenReturn(Single.just(ArticleListResult.Success(createListArticle())))
+        subject.fetchArticleList()
+
+        `when`(detailProvider.fetchDetailWithArticle(1, createListArticle())).thenReturn(Single.just(DetailResult.Failure("Exception")))
+        subject.fetchDetail(1)
+
+        val actual = subject.errorErrorLiveData.getOrAwaitValue()
+
+        assertEquals(actual.getContentIfNotHandled(), "Exception")
+    }
+
+    @Test
+    fun fetchDetail_givenDetailException_checkErrorMutableLiveData() {
+        `when`(articleProvider.fetchListArticle()).thenReturn(Single.just(ArticleListResult.Success(createListArticle())))
+        subject.fetchArticleList()
+
+        `when`(detailProvider.fetchDetailWithArticle(1, createListArticle())).thenReturn(Single.error(Exception("Exception")))
+        subject.fetchDetail(1)
+
+        val actual = subject.errorErrorLiveData.getOrAwaitValue()
+
+        assertEquals(actual.getContentIfNotHandled(), "Exception")
+    }
+
+    @Test
+    fun fetchDetail_givenDetailEmptyException_checkErrorMutableLiveData() {
+        `when`(articleProvider.fetchListArticle()).thenReturn(Single.just(ArticleListResult.Success(createListArticle())))
+        subject.fetchArticleList()
+
+        `when`(detailProvider.fetchDetailWithArticle(1, createListArticle())).thenReturn(Single.error(Exception()))
+        subject.fetchDetail(1)
+
+        val actual = subject.errorErrorLiveData.getOrAwaitValue()
+
+        assertEquals(actual.getContentIfNotHandled(), "Generic error")
+    }
+
+    @Test
+    fun fetchDetail_checkLoadingSpinnerLiveDataValue() {
+        `when`(articleProvider.fetchListArticle()).thenReturn(Single.just(ArticleListResult.Success(createListArticle())))
+        subject.fetchArticleList()
+
+        `when`(detailProvider.fetchDetailWithArticle(1, createListArticle())).thenReturn(Single.error(Exception()))
+        subject.fetchDetail(1)
+
+        val actual = subject.loadingSpinnerLiveData.getOrAwaitValue()
+
+        assertEquals(actual.getContentIfNotHandled(), false)
+    }
+
     private fun createListArticle() = listOf(
         Article(1, "title1", 1586404611, "short_desc1", "avatar_url1"),
         Article(2, "title2", 1586404611, "short_desc2", "avatar_url2")
     )
+
+    private fun createDetail(article: Article) = Detail(article.id, "long text")
 }

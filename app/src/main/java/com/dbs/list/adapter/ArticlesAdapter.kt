@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dbs.databinding.ItemArticleBinding
 import com.squareup.picasso.Picasso
 
-internal class ArticlesAdapter(private var list: List<ArticleModel> = emptyList()) :
+internal class ArticlesAdapter(private var list: List<ArticleModel> = emptyList(), private val onItemClickListener: OnItemClickListener) :
     RecyclerView.Adapter<ArticlesAdapter.ArticleViewHolder>() {
 
     fun update(list: List<ArticleModel>) {
@@ -16,7 +16,7 @@ internal class ArticlesAdapter(private var list: List<ArticleModel> = emptyList(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         val binding = ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ArticleViewHolder(binding)
+        return ArticleViewHolder(binding, onItemClickListener)
     }
 
     override fun getItemCount() = list.size
@@ -25,7 +25,7 @@ internal class ArticlesAdapter(private var list: List<ArticleModel> = emptyList(
         holder.bindViewModel(list[position])
     }
 
-    class ArticleViewHolder(private val binding: ItemArticleBinding) :
+    class ArticleViewHolder(private val binding: ItemArticleBinding, private val onItemClickListener: OnItemClickListener) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bindViewModel(articlesModel: ArticleModel) {
@@ -33,7 +33,14 @@ internal class ArticlesAdapter(private var list: List<ArticleModel> = emptyList(
             binding.articleDescription.text = articlesModel.shortDescription
             binding.articleLastUpdate.text = articlesModel.lastUpdate
             Picasso.get().load(articlesModel.avatarUrl).into(binding.articleAvatar)
+            binding.root.setOnClickListener {
+                onItemClickListener.onItemClickListener(articlesModel.id)
+            }
         }
 
+    }
+
+    interface OnItemClickListener {
+        fun onItemClickListener(id: Int)
     }
 }

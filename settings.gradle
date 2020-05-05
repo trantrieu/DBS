@@ -8,3 +8,4 @@ include ':app',
         ':article'
 include ':config'
 include ':testsupport'
+include ':detail'

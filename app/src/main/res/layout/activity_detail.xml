@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="end"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <ImageView
+        android:id="@+id/article_avatar"
+        android:layout_width="@dimen/avatar_size"
+        android:layout_height="@dimen/avatar_size"
+        android:layout_marginTop="@dimen/item_padding"
+        android:layout_marginEnd="@dimen/item_padding"
+        tools:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/article_long_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/item_padding"
+        android:layout_marginTop="@dimen/item_padding"
+        android:layout_marginEnd="@dimen/item_padding"
+        android:layout_marginBottom="@dimen/item_padding"
+        android:layout_weight="1"
+        android:scrollbars="vertical"
+        tools:text="verylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong textverylong text" />
+
+</LinearLayout>

@@ -5,7 +5,8 @@ ext.buildVersions = [
 ]
 
 ext.urlConfiguration = [
-        host : "https://task.free.beeceptor.com/"
+        //host : "https://task.free.beeceptor.com/"
+        host : "https://trieu.free.beeceptor.com"
 ]
 
 ext.appVersions = [
