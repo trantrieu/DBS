@@ -19,7 +19,8 @@ class ListArticleActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        DaggerListArticleComponent.builder()
+        DaggerListArticleComponent
+            .builder()
             .dBSAppComponent(DBSApp.getApp(this))
             .build()
             .inject(this)
@@ -28,10 +29,8 @@ class ListArticleActivity : BaseActivity() {
         setContentView(viewBinding.root)
         setSupportActionBar(viewBinding.toolbar)
 
-        val viewModel = ViewModelProvider(
-            this,
-            listArticleViewModelFactory
-        ).get(ListArticleViewModel::class.java)
+        val viewModel = ViewModelProvider(this, listArticleViewModelFactory)
+            .get(ListArticleViewModel::class.java)
         val adapter =
             ArticlesAdapter(onItemClickListener = object : ArticlesAdapter.OnItemClickListener {
                 override fun onItemClickListener(id: Int) {
@@ -53,7 +52,7 @@ class ListArticleActivity : BaseActivity() {
                 }
             }
         })
-        viewModel.loadingSpinnerLiveData.observe(this, Observer { it ->
+        viewModel.loadingSpinnerLiveData.observe(this, Observer {
             if (!it.hasBeenHandled) {
                 it.getContentIfNotHandled()?.let { show ->
                     if (show) {
@@ -64,7 +63,7 @@ class ListArticleActivity : BaseActivity() {
                 }
             }
         })
-        viewModel.navigateDetailLiveData.observe(this, Observer { it ->
+        viewModel.navigateDetailLiveData.observe(this, Observer {
             if (!it.hasBeenHandled) {
                 it.getContentIfNotHandled()?.let { detail ->
                     DetailActivity.startActivity(this, detail)

@@ -5,7 +5,6 @@ import com.dbs.config.SchedulerConfig
 import com.dbs.service.ServiceProvider
 import dagger.BindsInstance
 import dagger.Component
-import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Singleton
 
 @Singleton

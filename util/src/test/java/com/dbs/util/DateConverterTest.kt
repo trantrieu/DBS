@@ -1,7 +1,6 @@
 package com.dbs.util
 
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertThat
 import org.junit.Test
 
 internal class DateConverterTest {

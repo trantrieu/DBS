@@ -1,7 +1,7 @@
 package com.dbs.service
 
 import com.dbs.service.detail.DetailResponse
-import com.dbs.service.titles.ArticleResponse
+import com.dbs.service.article.ArticleResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -3,7 +3,7 @@ package com.dbs.service
 import com.dbs.data.article.detail.Detail
 import com.dbs.data.article.list.Article
 import com.dbs.service.detail.DetailResponse
-import com.dbs.service.titles.ArticleResponse
+import com.dbs.service.article.ArticleResponse
 
 internal object ResponseConverter {
 

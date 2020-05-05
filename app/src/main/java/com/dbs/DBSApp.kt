@@ -9,7 +9,8 @@ class DBSApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        dbsAppComponent = DaggerDBSAppComponent.builder()
+        dbsAppComponent = DaggerDBSAppComponent
+            .builder()
             .bindsContext(this)
             .build()
     }

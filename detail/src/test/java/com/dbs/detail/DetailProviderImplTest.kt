@@ -4,8 +4,6 @@ import com.dbs.data.article.detail.Detail
 import com.dbs.data.article.list.Article
 import com.dbs.service.ServiceProvider
 import io.reactivex.Single
-import junit.framework.Assert.assertEquals
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.InjectMocks

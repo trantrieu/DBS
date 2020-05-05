@@ -3,7 +3,6 @@ package com.dbs.edit
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
@@ -12,7 +11,6 @@ import com.dbs.base.R
 import com.dbs.data.article.detail.Detail
 import com.dbs.databinding.ActivityEditBinding
 import com.dbs.detail.DetailActivity.Companion.DETAIL_EXTRA
-import com.dbs.detail.DetailActivity.Companion.REQUEST_EDIT_CODE
 
 class EditActivity : BaseActivity() {
 
@@ -43,12 +41,7 @@ class EditActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = detail.article!!.title
         binding.saveButton.setOnClickListener {
-            val text = binding.editTextDetail.text.toString()
-            viewModel.updateText(text)
-            val data = Intent()
-            data.putExtra(DETAIL_EXTRA, viewModel.detail)
-            setResult(Activity.RESULT_OK, data)
-            finish()
+            handleSave(binding)
         }
         binding.editTextDetail.setText(detail.text)
 
@@ -69,5 +62,14 @@ class EditActivity : BaseActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun handleSave(binding: ActivityEditBinding) {
+        val text = binding.editTextDetail.text.toString()
+        viewModel.updateText(text)
+        val data = Intent()
+        data.putExtra(DETAIL_EXTRA, viewModel.detail)
+        setResult(Activity.RESULT_OK, data)
+        finish()
     }
 }

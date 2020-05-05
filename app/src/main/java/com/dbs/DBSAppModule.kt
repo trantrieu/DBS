@@ -1,15 +1,12 @@
 package com.dbs
 
 import android.content.Context
-import com.dbs.article.ArticleProvider
-import com.dbs.article.ArticleProviderObjectGraph
 import com.dbs.config.SchedulerConfig
 import com.dbs.network.NetworkObjectGraph
 import com.dbs.service.ServiceObjectGraph
 import com.dbs.service.ServiceProvider
 import dagger.Module
 import dagger.Provides
-import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Singleton
 
 @Module

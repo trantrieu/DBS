@@ -2,8 +2,6 @@ package com.dbs.article
 
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
 
 @Module
 internal abstract class ArticleModule {

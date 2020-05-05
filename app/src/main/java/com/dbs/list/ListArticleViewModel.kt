@@ -1,7 +1,5 @@
 package com.dbs.list
 
-import androidx.annotation.VisibleForTesting
-import androidx.arch.core.util.Function
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -17,7 +15,6 @@ import com.dbs.detail.DetailResult
 import com.dbs.list.adapter.ArticleModel
 import com.dbs.list.adapter.ArticlesModelConvert
 import io.reactivex.disposables.CompositeDisposable
-import java.util.concurrent.TimeUnit
 
 internal class ListArticleViewModel constructor(
     private val articleProvider: ArticleProvider,
@@ -31,9 +28,9 @@ internal class ListArticleViewModel constructor(
     private val loadingSpinnerMutableLiveData = MutableLiveData<SingleEvent<Boolean>>()
     private val navigateDetailMutableLiveData = MutableLiveData<SingleEvent<Detail>>()
 
-    val articleLiveData: LiveData<List<ArticleModel>> = Transformations.map(articleMutableLiveData, Function {
+    val articleLiveData: LiveData<List<ArticleModel>> = Transformations.map(articleMutableLiveData) {
         ArticlesModelConvert.convertViewModel(it)
-    })
+    }
     val errorErrorLiveData: LiveData<SingleEvent<String>> = errorMutableLiveData
     val loadingSpinnerLiveData: LiveData<SingleEvent<Boolean>> = loadingSpinnerMutableLiveData
     val navigateDetailLiveData: LiveData<SingleEvent<Detail>> = navigateDetailMutableLiveData

@@ -4,7 +4,8 @@ import com.dbs.service.ServiceProvider
 
 class DetailProviderObjectGraph(serviceProvider: ServiceProvider) {
 
-    private val component = DaggerDetailProviderComponent.builder()
+    private val component = DaggerDetailProviderComponent
+        .builder()
         .bindsServiceProvider(serviceProvider)
         .build()
 

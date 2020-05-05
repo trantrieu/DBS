@@ -1,7 +1,7 @@
 package com.dbs.service
 
 import com.dbs.service.detail.DetailResponse
-import com.dbs.service.titles.ArticleResponse
+import com.dbs.service.article.ArticleResponse
 import junit.framework.Assert.assertEquals
 import org.junit.Test
 
@@ -12,7 +12,6 @@ internal class ResponseConverterTest {
         val actual = ResponseConverter.convertArticle(getListArticleResponse())
 
         assertEquals(2, actual.size)
-
         assertEquals(actual[0].id, 1)
         assertEquals(actual[0].avatar, "https://minotar.net/avatar/user2")
         assertEquals(actual[0].lastUpdate, 1586404611)
@@ -21,7 +20,6 @@ internal class ResponseConverterTest {
             "This is article 1 short description. She wholly fat who window extent either formal. Removing welcomed civility or hastened is."
         )
         assertEquals(actual[0].title, "article 1 title")
-
         assertEquals(actual[1].id, 2)
         assertEquals(actual[1].avatar, "https://minotar.net/avatar/user3")
         assertEquals(actual[1].lastUpdate, 1506404611)

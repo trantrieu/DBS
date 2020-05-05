@@ -46,7 +46,8 @@ class DetailActivity : BaseActivity() {
             return
         }
 
-        DaggerDetailComponent.builder()
+        DaggerDetailComponent
+            .builder()
             .dBSAppComponent(DBSApp.getApp(this))
             .build()
             .inject(this)
@@ -57,10 +58,8 @@ class DetailActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.articleLongText.movementMethod = ScrollingMovementMethod()
 
-        viewModel = ViewModelProvider(
-            this,
-            detailViewModelFactory
-        ).get(DetailViewModel::class.java)
+        viewModel = ViewModelProvider(this, detailViewModelFactory)
+            .get(DetailViewModel::class.java)
         viewModel.setDetail(detail)
         viewModel.textLongLiveData.observe(this, Observer {
             binding.articleLongText.text = it

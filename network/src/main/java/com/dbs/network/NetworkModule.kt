@@ -1,7 +1,6 @@
 package com.dbs.network
 
 import android.content.Context
-import android.os.Build.HOST
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers

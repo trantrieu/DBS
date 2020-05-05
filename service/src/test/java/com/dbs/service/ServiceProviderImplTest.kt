@@ -1,6 +1,6 @@
 package com.dbs.service
 
-import com.dbs.service.titles.ArticleResponse
+import com.dbs.service.article.ArticleResponse
 import io.reactivex.Single
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -25,8 +25,15 @@ internal class ServiceProviderImplTest {
         val actual = subject.getArticles().test()
         actual.assertValue {
             it.size == 2
-                    && it[0].id == 1 && it[0].title == "title1" && it[0].lastUpdate == 1586404611L && it[0].shortDescription == "short_description1" && it[0].avatar == "avatar_url1"
-                    && it[1].id == 2 && it[1].title == "title2" && it[1].lastUpdate == 1586404611L && it[1].shortDescription == "short_description2" && it[1].avatar == "avatar_url2"
+                    && it[0].id == 1 && it[0].title == "title1"
+                    && it[0].lastUpdate == 1586404611L
+                    && it[0].shortDescription == "short_description1"
+                    && it[0].avatar == "avatar_url1"
+                    && it[1].id == 2
+                    && it[1].title == "title2"
+                    && it[1].lastUpdate == 1586404611L
+                    && it[1].shortDescription == "short_description2"
+                    && it[1].avatar == "avatar_url2"
         }
     }
 
