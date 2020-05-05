@@ -5,7 +5,7 @@ ext.buildVersions = [
 ]
 
 ext.urlConfiguration = [
-        host : "https://146l9.mocklab.io"
+        host : "https://task.free.beeceptor.com/"
 ]
 
 ext.appVersions = [
