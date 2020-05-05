@@ -1,9 +1,7 @@
-package com.dbs.list
+package com.dbs
 
 import android.app.Application
 import android.content.Context
-import com.dbs.DBSAppComponent
-import com.dbs.DaggerDBSAppComponent
 
 class DBSApp : Application() {
 

@@ -1,15 +1,14 @@
 package com.dbs.list
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dbs.DBSApp
 import com.dbs.base.BaseActivity
 import com.dbs.databinding.ActivityArticleListBinding
 import com.dbs.detail.DetailActivity
 import com.dbs.list.adapter.ArticlesAdapter
-import kotlinx.android.synthetic.main.activity_article_list.*
 import javax.inject.Inject
 
 class ListArticleActivity : BaseActivity() {

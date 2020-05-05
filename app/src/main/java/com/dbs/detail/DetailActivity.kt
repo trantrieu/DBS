@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.dbs.base.BaseActivity
 import com.dbs.data.article.detail.Detail
 import com.dbs.databinding.ActivityDetailBinding
-import com.dbs.list.DBSApp
+import com.dbs.DBSApp
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
 import com.dbs.base.R
