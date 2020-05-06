@@ -21,7 +21,8 @@
 7. network: configurate network with retrofit2 and okhttp
 8. service: configurate article and detail service
 9. testsupport: contains live data testing support for unit test
-10. util: contains utility classes
+10. uitestsupport: contains utils for support espresso tests
+11. util: contains utility classes
 
 ## Configurate:
 1. Api host: the host is in appConfiguration.gradle file, under this code
