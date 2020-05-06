@@ -53,84 +53,84 @@ internal class ListArticleActivityTest {
         onView(
             RecyclerViewRobot.getItemViewAtPosition(
                 R.id.recycler_view_items,
-                0,
+                3,
                 R.id.article_title
             )
         ).check(matches(withText("title1")))
         onView(
             RecyclerViewRobot.getItemViewAtPosition(
                 R.id.recycler_view_items,
-                0,
+                3,
                 R.id.article_last_update
             )
         ).check(matches(withText("19-01-1970")))
         onView(
             RecyclerViewRobot.getItemViewAtPosition(
                 R.id.recycler_view_items,
-                0,
+                3,
                 R.id.article_description
             )
         ).check(matches(withText("desc1")))
         onView(
             RecyclerViewRobot.getItemViewAtPosition(
                 R.id.recycler_view_items,
-                1,
+                2,
                 R.id.article_title
             )
         ).check(matches(withText("title3")))
         onView(
             RecyclerViewRobot.getItemViewAtPosition(
                 R.id.recycler_view_items,
-                1,
+                2,
                 R.id.article_last_update
             )
         ).check(matches(withText("19-01-1970")))
         onView(
             RecyclerViewRobot.getItemViewAtPosition(
                 R.id.recycler_view_items,
-                1,
+                2,
                 R.id.article_description
             )
         ).check(matches(withText("desc3")))
         onView(
             RecyclerViewRobot.getItemViewAtPosition(
                 R.id.recycler_view_items,
-                2,
+                1,
                 R.id.article_title
             )
         ).check(matches(withText("title2")))
         onView(
             RecyclerViewRobot.getItemViewAtPosition(
                 R.id.recycler_view_items,
-                2,
+                1,
                 R.id.article_last_update
             )
         ).check(matches(withText("19-01-1970")))
         onView(
             RecyclerViewRobot.getItemViewAtPosition(
                 R.id.recycler_view_items,
-                2,
+                1,
                 R.id.article_description
             )
         ).check(matches(withText("desc2")))
         onView(
             RecyclerViewRobot.getItemViewAtPosition(
                 R.id.recycler_view_items,
-                3,
+                0,
                 R.id.article_title
             )
         ).check(matches(withText("title4")))
         onView(
             RecyclerViewRobot.getItemViewAtPosition(
                 R.id.recycler_view_items,
-                3,
+                0,
                 R.id.article_last_update
             )
         ).check(matches(withText("19-01-1970")))
         onView(
             RecyclerViewRobot.getItemViewAtPosition(
                 R.id.recycler_view_items,
-                3,
+                0,
                 R.id.article_description
             )
         ).check(matches(withText("desc4")))

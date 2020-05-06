@@ -55,10 +55,10 @@ internal class ArticleProviderImplTest {
 
         actual.assertValue {
             it is ArticleListResult.Success
-                    && it.articleList[0].id == 1
-                    && it.articleList[1].id == 2
-                    && it.articleList[2].id == 3
-                    && it.articleList[3].id == 4
+                    && it.articleList[3].id == 1
+                    && it.articleList[2].id == 2
+                    && it.articleList[1].id == 3
+                    && it.articleList[0].id == 4
         }
     }
 
