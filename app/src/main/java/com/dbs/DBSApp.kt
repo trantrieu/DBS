@@ -3,9 +3,9 @@ package com.dbs
 import android.app.Application
 import android.content.Context
 
-class DBSApp : Application() {
+open class DBSApp : Application() {
 
-    private lateinit var dbsAppComponent: DBSAppComponent
+    lateinit var dbsAppComponent: DBSAppComponent
 
     override fun onCreate() {
         super.onCreate()

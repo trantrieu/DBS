@@ -11,13 +11,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-internal class DBSAppModule {
-
-    @Singleton
-    @Provides
-    fun provideHostConfig(): HostConfig {
-        return HostConfig.getDefaultHostConfig()
-    }
+internal class EspressoDBSAppModule {
 
     @Singleton
     @Provides
@@ -31,4 +25,15 @@ internal class DBSAppModule {
     fun provideSchedulerConfig(): SchedulerConfig {
         return SchedulerConfig.getDefaultSchedulerConfig()
     }
+
+    @Singleton
+    @Provides
+    fun provideHostConfig(): HostConfig {
+        return object : HostConfig {
+            override fun getHost(): String {
+                return "http://127.0.0.1:8080"
+            }
+        }
+    }
+
 }

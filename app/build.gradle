@@ -11,6 +11,8 @@ android {
         targetSdkVersion buildVersions.targetSdkVersion
         versionCode appVersions.versionCode
         versionName appVersions.versionName
+
+        testInstrumentationRunner "com.dbs.DBSRunner"
     }
 
     compileOptions {
@@ -57,4 +59,12 @@ dependencies {
     testImplementation libs.mockito
     testImplementation libs.archTest
     testImplementation project(':testsupport')
+
+    androidTestImplementation libs.espressoCore
+    androidTestImplementation libs.espressoIntent
+    androidTestImplementation libs.mockWebServer
+    androidTestImplementation libs.rxidler
+    androidTestImplementation libs.epressoContrib
+    androidTestImplementation project(':uitestsupport')
+    kaptAndroidTest libsAnnotationProcessor.dagger2
 }
