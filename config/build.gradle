@@ -10,6 +10,8 @@ android {
         targetSdkVersion buildVersions.targetSdkVersion
         versionCode appVersions.versionCode
         versionName appVersions.versionName
+
+        buildConfigField "String", "HOST", "\"${urlConfiguration.host}\""
     }
 
     compileOptions {

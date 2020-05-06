@@ -5,7 +5,8 @@ include ':app',
         ':network',
         ':service',
         ':util',
-        ':article'
-include ':config'
-include ':testsupport'
-include ':detail'
+        ':article',
+        ':config',
+        ':testsupport',
+        ':detail',
+        ':uitestsupport'
