@@ -41,6 +41,7 @@ So just update the host for connecting to your server.
 
 ## Test:
 Unit test with JUnit and Mockito
+Espresso test with mockweb server and core espresso libirary
 
 ## Note:
 The api that you provide is limited by number of request per days, that why i change to other api, please update it.
