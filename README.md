@@ -40,8 +40,8 @@ So just update the host for connecting to your server.
 5. Sorted articles list base on last update
 
 ## Test:
-Unit test with JUnit and Mockito
-Espresso test with mockweb server and core espresso libirary
+1.Unit test with JUnit and Mockito  
+2.Espresso test with mockweb server and core espresso libirary
 
 ## Note:
 The api that you provide is limited by number of request per days, that why i change to other api, please update it.
