@@ -1,6 +1,7 @@
 package com.dbs.network
 
 import android.content.Context
+import com.dbs.config.HostConfig
 import dagger.BindsInstance
 import dagger.Component
 import retrofit2.Retrofit
@@ -17,6 +18,9 @@ internal interface NetworkComponent {
 
         @BindsInstance
         fun bindsContext(context: Context): Builder
+
+        @BindsInstance
+        fun bindsHostConfig(hostConfig: HostConfig): Builder
 
         fun build(): NetworkComponent
 

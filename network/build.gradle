@@ -11,8 +11,6 @@ android {
         targetSdkVersion buildVersions.targetSdkVersion
         versionCode appVersions.versionCode
         versionName appVersions.versionName
-
-        buildConfigField "String", "HOST", "\"${urlConfiguration.host}\""
     }
 
     compileOptions {
@@ -34,6 +32,7 @@ dependencies {
     implementation libs.retrofit2Converter
     implementation libs.okHttpLog
     implementation project(':data')
+    implementation project(':config')
     implementation libs.dagger2
     kapt libsAnnotationProcessor.dagger2
 }

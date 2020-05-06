@@ -1,6 +1,7 @@
 package com.dbs.network
 
 import android.content.Context
+import com.dbs.config.HostConfig
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
@@ -16,10 +17,10 @@ internal class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit2(context: Context, okHttpClient: OkHttpClient) : Retrofit {
+    fun provideRetrofit2(context: Context, okHttpClient: OkHttpClient, hostConfig: HostConfig) : Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl(BuildConfig.HOST)
+            .baseUrl(hostConfig.getHost())
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(NetworkExceptionAdapterFactory(context))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
