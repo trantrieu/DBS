@@ -30,7 +30,6 @@ dependencies {
     implementation project(':service')
     implementation project(':data')
     implementation libs.rxJava2
-    implementation libs.rxAndroid
     implementation libs.dagger2
     kapt libsAnnotationProcessor.dagger2
 

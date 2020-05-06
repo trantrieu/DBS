@@ -2,7 +2,7 @@ package com.dbs.service
 
 import com.dbs.service.detail.DetailResponse
 import com.dbs.service.article.ArticleResponse
-import junit.framework.Assert.assertEquals
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 internal class ResponseConverterTest {

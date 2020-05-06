@@ -26,11 +26,6 @@ android {
 }
 
 dependencies {
-
-    implementation libs.rxJava2
-    implementation libs.rxAndroid
-    implementation libs.picasso
-
     testImplementation libs.junit
     testImplementation libs.mockito
 }
