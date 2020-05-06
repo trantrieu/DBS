@@ -6,7 +6,7 @@ import okio.Buffer
 
 class WebServerRobot(private val mockWebServer: MockWebServer) {
 
-    fun mockArticleListSuccessful() {
+    fun mockArticleListSuccessful(): WebServerRobot {
         val fileInputStream = javaClass.classLoader.getResourceAsStream("article/get.json")
 
         Buffer().use { buffer ->
@@ -15,11 +15,25 @@ class WebServerRobot(private val mockWebServer: MockWebServer) {
             mockResponse.setResponseCode(200)
             mockWebServer.enqueue(mockResponse)
         }
+        return this
     }
 
-    fun mockArticleFailure(errorCode: Int = 500) {
+    fun mockResponseFailure(errorCode: Int = 500): WebServerRobot {
         val mockResponse = MockResponse().setResponseCode(errorCode)
         mockWebServer.enqueue(mockResponse)
+        return this
+    }
+
+    fun mockDetailSuccessful(): WebServerRobot {
+        val fileInputStream = javaClass.classLoader.getResourceAsStream("detail/get.json")
+
+        Buffer().use { buffer ->
+            val mockResponse =
+                MockResponse().setBody(buffer.readFrom(fileInputStream))
+            mockResponse.setResponseCode(200)
+            mockWebServer.enqueue(mockResponse)
+        }
+        return this
     }
 
 }

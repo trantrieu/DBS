@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/network" />
             <option value="$PROJECT_DIR$/service" />
             <option value="$PROJECT_DIR$/testsupport" />
+            <option value="$PROJECT_DIR$/uitestsupport" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>
