@@ -15,7 +15,6 @@ import androidx.test.rule.ActivityTestRule
 import com.dbs.R
 import com.dbs.data.article.detail.Detail
 import com.dbs.data.article.list.Article
-import com.dbs.detail.DetailActivity
 import com.dbs.detail.DetailActivity.Companion.DETAIL_EXTRA
 import org.junit.After
 import org.junit.Before

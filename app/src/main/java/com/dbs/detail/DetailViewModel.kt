@@ -3,6 +3,7 @@ package com.dbs.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dbs.base.nonNull
 import com.dbs.data.article.detail.Detail
 
 internal class DetailViewModel : ViewModel() {
@@ -12,9 +13,9 @@ internal class DetailViewModel : ViewModel() {
     private val avatarMutableLiveData = MutableLiveData<String>()
     private val titleMutableLiveData = MutableLiveData<String>()
 
-    val textLongLiveData: LiveData<String> = textMutableLiveData
-    val avatarLiveData: LiveData<String> = avatarMutableLiveData
-    val titleLiveData: LiveData<String> = titleMutableLiveData
+    val textLongLiveData: LiveData<String> = textMutableLiveData.nonNull()
+    val avatarLiveData: LiveData<String> = avatarMutableLiveData.nonNull()
+    val titleLiveData: LiveData<String> = titleMutableLiveData.nonNull()
 
     fun setDetail(detail: Detail) {
         this.detail = detail

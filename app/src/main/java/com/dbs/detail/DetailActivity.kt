@@ -62,6 +62,7 @@ class DetailActivity : BaseActivity() {
             .get(DetailViewModel::class.java)
         viewModel.setDetail(detail)
         viewModel.textLongLiveData.observe(this, Observer {
+            binding.articleLongText.scrollTo(0, 0)
             binding.articleLongText.text = it
         })
         viewModel.avatarLiveData.observe(this, Observer {
