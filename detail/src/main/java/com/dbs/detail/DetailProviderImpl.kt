@@ -23,8 +23,7 @@ internal class DetailProviderImpl @Inject constructor(
                 DetailResult.Success(detail) as DetailResult
             })
             .onErrorReturn {
-                val msg = it.message ?: "Generic failure"
-                DetailResult.Failure(msg)
+                DetailResult.Failure(it.message)
             }
     }
 

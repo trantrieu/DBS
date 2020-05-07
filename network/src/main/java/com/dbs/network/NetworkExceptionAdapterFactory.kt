@@ -19,7 +19,7 @@ internal class NetworkExceptionAdapterFactory(private val context: Context) : Ca
             override fun adapt(call: Call<Any>): Any {
                 return previousCallAdapter.adapt(call).onErrorResumeNext {
                     return@onErrorResumeNext if (!isConnected()) {
-                        Single.error(NoConnectionException("No connection!"))
+                        Single.error(NoConnectionException(context.getString(R.string.no_connection)))
                     } else {
                         Single.error(it)
                     }

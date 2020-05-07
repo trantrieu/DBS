@@ -1,11 +1,11 @@
 package com.dbs.list
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
+import android.content.Context
+import androidx.lifecycle.*
+import com.dbs.DBSApp
 import com.dbs.article.ArticleListResult
 import com.dbs.article.ArticleProvider
+import com.dbs.base.R
 import com.dbs.base.nonNull
 import com.dbs.config.SchedulerConfig
 import com.dbs.data.SingleEvent
@@ -21,20 +21,24 @@ internal class ListArticleViewModel constructor(
     private val articleProvider: ArticleProvider,
     private val detailProvider: DetailProvider,
     private val schedulerConfig: SchedulerConfig,
+    private val dbsApp: DBSApp,
     private val compositeDisposable: CompositeDisposable
-) : ViewModel() {
+) : AndroidViewModel(dbsApp) {
 
     private val articleMutableLiveData = MutableLiveData<List<Article>>()
     private val errorMutableLiveData = MutableLiveData<SingleEvent<String>>()
     private val loadingSpinnerMutableLiveData = MutableLiveData<SingleEvent<Boolean>>()
     private val navigateDetailMutableLiveData = MutableLiveData<SingleEvent<Detail>>()
 
-    val articleLiveData: LiveData<List<ArticleModel>> = Transformations.map(articleMutableLiveData.nonNull()) {
-        ArticlesModelConvert.convertViewModel(it)
-    }
+    val articleLiveData: LiveData<List<ArticleModel>> =
+        Transformations.map(articleMutableLiveData.nonNull()) {
+            ArticlesModelConvert.convertViewModel(it)
+        }
     val errorErrorLiveData: LiveData<SingleEvent<String>> = errorMutableLiveData.nonNull()
-    val loadingSpinnerLiveData: LiveData<SingleEvent<Boolean>> = loadingSpinnerMutableLiveData.nonNull()
-    val navigateDetailLiveData: LiveData<SingleEvent<Detail>> = navigateDetailMutableLiveData.nonNull()
+    val loadingSpinnerLiveData: LiveData<SingleEvent<Boolean>> =
+        loadingSpinnerMutableLiveData.nonNull()
+    val navigateDetailLiveData: LiveData<SingleEvent<Detail>> =
+        navigateDetailMutableLiveData.nonNull()
 
     fun fetchArticleList() {
         val fetch = articleProvider
@@ -45,10 +49,11 @@ internal class ListArticleViewModel constructor(
             .subscribe({
                 when (it) {
                     is ArticleListResult.Success -> articleMutableLiveData.value = it.articleList
-                    is ArticleListResult.Failure -> errorMutableLiveData.value = SingleEvent(it.message)
+                    is ArticleListResult.Failure -> errorMutableLiveData.value =
+                        SingleEvent(it.message ?: dbsApp.getString(R.string.generic_failure))
                 }
             }, {
-                val msg = it.message ?: "Generic error"
+                val msg = it.message ?: dbsApp.getString(R.string.generic_failure)
                 errorMutableLiveData.value = SingleEvent(msg)
             })
         compositeDisposable.add(fetch)
@@ -62,11 +67,13 @@ internal class ListArticleViewModel constructor(
             .observeOn(schedulerConfig.getMainScheduler())
             .subscribe({
                 when (it) {
-                    is DetailResult.Success -> navigateDetailMutableLiveData.value = SingleEvent(it.detail)
-                    is DetailResult.Failure -> errorMutableLiveData.value = SingleEvent(it.message)
+                    is DetailResult.Success -> navigateDetailMutableLiveData.value =
+                        SingleEvent(it.detail)
+                    is DetailResult.Failure -> errorMutableLiveData.value =
+                        SingleEvent(it.message ?: dbsApp.getString(R.string.generic_failure))
                 }
             }, {
-                val msg = it.message ?: "Generic error"
+                val msg = it.message ?: dbsApp.getString(R.string.generic_failure)
                 errorMutableLiveData.value = SingleEvent(msg)
             })
         compositeDisposable.add(fetch)

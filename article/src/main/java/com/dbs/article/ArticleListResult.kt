@@ -6,5 +6,5 @@ sealed class ArticleListResult {
 
     data class Success(val articleList: List<Article>) : ArticleListResult()
 
-    data class Failure(val message: String) : ArticleListResult()
+    data class Failure(val message: String?) : ArticleListResult()
 }

@@ -15,8 +15,7 @@ internal class ArticleProviderImpl @Inject constructor(
             val sortList = it.sortedByDescending { article -> article.lastUpdate }
             ArticleListResult.Success(sortList) as ArticleListResult
         }.onErrorReturn {
-            val msg = it.message ?: "Generic failure"
-            ArticleListResult.Failure(msg) as ArticleListResult
+            ArticleListResult.Failure(it.message) as ArticleListResult
         }
     }
 

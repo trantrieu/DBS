@@ -15,6 +15,8 @@ interface DBSAppComponent {
 
     fun provideSchedulerConfig(): SchedulerConfig
 
+    fun provideContext(): Context
+
     @Component.Builder
     interface Builder {
 

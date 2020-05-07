@@ -61,7 +61,6 @@ internal class DetailProviderImplTest {
 
         actual.assertValue {
             it is DetailResult.Failure
-                    && it.message == "Generic failure"
         }
     }
 

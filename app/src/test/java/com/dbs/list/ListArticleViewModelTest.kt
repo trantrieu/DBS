@@ -1,8 +1,11 @@
 package com.dbs.list
 
+import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.dbs.DBSApp
 import com.dbs.article.ArticleListResult
 import com.dbs.article.ArticleProvider
+import com.dbs.base.R
 import com.dbs.config.SchedulerConfig
 import com.dbs.data.article.detail.Detail
 import com.dbs.data.article.list.Article
@@ -33,13 +36,17 @@ internal class ListArticleViewModelTest {
     private lateinit var detailProvider: DetailProvider
     @Mock
     private lateinit var schedulerConfig: SchedulerConfig
+    @Mock
+    private lateinit var context: DBSApp
 
     private lateinit var subject: ListArticleViewModel
 
     @Before
     fun setup() {
         `when`(schedulerConfig.getMainScheduler()).thenReturn(Schedulers.trampoline())
-        subject = ListArticleViewModel(articleProvider, detailProvider, schedulerConfig, CompositeDisposable())
+        `when`(context.getString(R.string.generic_failure)).thenReturn("Generic error")
+
+        subject = ListArticleViewModel(articleProvider, detailProvider, schedulerConfig, context, CompositeDisposable())
     }
 
     @Test
